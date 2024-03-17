@@ -90,3 +90,19 @@ resource "azurerm_virtual_machine_extension" "AzureMonitorLinuxAgent" {
 
 
 }
+
+resource "azurerm_virtual_machine_extension" "custom_script" {
+  name                 = "docker"
+  virtual_machine_id   = azurerm_virtual_machine.vm.id
+  publisher            = "Microsoft.Azure.Extensions"
+  type                 = "CustomScript"
+  type_handler_version = "2.0"
+  auto_upgrade_minor_version = true
+
+  settings = <<SETTINGS
+    {
+        "commandToExecute": "sh docker.sh",
+        "fileUris": ["https://raw.githubusercontent.com/manbaso/vm/main/terraform/extensions/docker.sh"]
+    }
+   SETTINGS
+}
