@@ -92,8 +92,16 @@ resource "azurerm_virtual_machine_extension" "AzureMonitorLinuxAgent" {
 }
 
 resource "azurerm_virtual_machine_extension" "custom_script" {
-  name                 = "docker"
-  virtual_machine_id   = azurerm_virtual_machine.vm.id
+
+  for_each = tomap({
+    for s in azurerm_linux_virtual_machine.vm : s.name => s.id
+  })
+
+  virtual_machine_id = each.value
+
+
+  name                 = "Docker"
+
   publisher            = "Microsoft.Azure.Extensions"
   type                 = "CustomScript"
   type_handler_version = "2.0"
