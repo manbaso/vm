@@ -73,3 +73,20 @@ resource "azurerm_linux_virtual_machine" "vm" {
 
 
 }
+
+resource "azurerm_virtual_machine_extension" "AzureMonitorLinuxAgent" {
+
+  for_each = tomap({
+    for s in azurerm_linux_virtual_machine.vm : s.name => s.id
+  })
+
+  virtual_machine_id = each.value
+
+  name                       = "AzureMonitorLinuxAgent"
+  publisher                  = "Microsoft.Azure.Monitor"
+  type                       = "AzureMonitorLinuxAgent"
+  type_handler_version       = "1.0"
+  auto_upgrade_minor_version = "true"
+
+
+}
