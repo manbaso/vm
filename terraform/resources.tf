@@ -91,26 +91,26 @@ resource "azurerm_virtual_machine_extension" "AzureMonitorLinuxAgent" {
 
 }
 
-resource "azurerm_virtual_machine_extension" "custom_script" {
+# resource "azurerm_virtual_machine_extension" "custom_script" {
 
-  for_each = tomap({
-    for s in azurerm_linux_virtual_machine.vm : s.name => s.id
-  })
+#   for_each = tomap({
+#     for s in azurerm_linux_virtual_machine.vm : s.name => s.id
+#   })
 
-  virtual_machine_id = each.value
+#   virtual_machine_id = each.value
 
 
-  name                 = "Docker"
+#   name                 = "Docker"
 
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
-  type_handler_version = "2.0"
-  auto_upgrade_minor_version = true
+#   publisher            = "Microsoft.Azure.Extensions"
+#   type                 = "CustomScript"
+#   type_handler_version = "2.0"
+#   auto_upgrade_minor_version = true
 
-  settings = <<SETTINGS
-    {
-        "commandToExecute": "sh docker.sh",
-        "fileUris": ["https://raw.githubusercontent.com/manbaso/vm/main/terraform/extensions/docker.sh"]
-    }
-   SETTINGS
-}
+#   settings = <<SETTINGS
+#     {
+#         "commandToExecute": "sh docker.sh",
+#         "fileUris": ["https://raw.githubusercontent.com/manbaso/vm/main/terraform/extensions/docker.sh"]
+#     }
+#    SETTINGS
+# }
