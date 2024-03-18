@@ -128,5 +128,5 @@ jobs:
         ssh-private-key: ${{ secrets.PRIVATE_KEY_TWO }}    
 
     - name: "Print Ansible version"
-      run: ansible-playbook -i hosts playbook.yml ANSIBLE_HOST_KEY_CHECKING=false
+      run: ansible-playbook -i hosts playbook.yml 
       working-directory: terraform/ansible
