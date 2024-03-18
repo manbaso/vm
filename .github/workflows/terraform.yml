@@ -122,7 +122,7 @@ jobs:
         # The version of Ansible to install.
         version: "9.3.0"
     - name: Check the Ansible Hosts File
-      run: cat hosts
+      run: ls
      
             
     - uses: tanmancan/action-setup-ssh-agent-key@1.0.0
