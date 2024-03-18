@@ -125,7 +125,7 @@ jobs:
             
     - uses: webfactory/ssh-agent@v0.9.0
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}    
+        ssh-private-key: ANSIBLE_PRIVATE_KEY    
 
     - name: "Print Ansible version"
       run: ansible-playbook -i hosts ./ansible/playbook.yml ANSIBLE_HOST_KEY_CHECKING=false
