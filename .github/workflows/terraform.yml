@@ -83,13 +83,7 @@ jobs:
         # Set this value to true to enable Azure PowerShell Login in addition to Azure CLI login
 
     - name: Create Host Ansible Host File
-      uses: 1arp/create-a-file-action@0.4.4
-      with:
-        
-        file: hosts
-        # The content of the file
-        content: |
-          [server]    
+      run: echo "[server]" >> hosts   
             
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
