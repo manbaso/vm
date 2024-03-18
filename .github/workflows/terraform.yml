@@ -81,7 +81,14 @@ jobs:
         # Azure subscriptionId
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         # Set this value to true to enable Azure PowerShell Login in addition to Azure CLI login
-        
+
+    uses: 1arp/create-a-file-action@0.4.4
+    with:
+      
+      file: hosts
+      # The content of the file
+      content: |
+        [server]    
             
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
@@ -111,3 +118,9 @@ jobs:
       # if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
       run: terraform apply -auto-approve -input=false
       working-directory: terraform
+
+    - name: Setup Ansible
+      uses: alex-oleshkevich/setup-ansible@v1.0.1
+      with:
+        # The version of Ansible to install.
+        version: "9.3.0"
