@@ -124,7 +124,7 @@ jobs:
         version: "9.3.0"
     - name: Check the Ansible Hosts File
       run: terraform output vm_ids | grep ip | awk '{print $3}'  | sed 's/^"//; s/"$//' >> hosts 
-      working-directory: terraform    
+      working-directory: terraform/ansible    
     - name: Check the Ansible Hosts File
       run: cat hosts
       working-directory: terraform/ansible
