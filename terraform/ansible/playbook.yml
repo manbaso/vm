@@ -1,6 +1,6 @@
 ---
 - name: Install Docker 
-  hosts: all
+  hosts: server
   become: yes
   roles:
     - role: docker
