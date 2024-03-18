@@ -121,6 +121,11 @@ jobs:
       with:
         # The version of Ansible to install.
         version: "9.3.0"
+     
+            
+    - uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}    
 
     - name: "Print Ansible version"
-      run: ansible-playbook -i hosts ./ansible/playbook.yml --private-key=${ANSIBLE_PRIVATE_KEY}   ANSIBLE_HOST_KEY_CHECKING=false
+      run: ansible-playbook -i hosts ./ansible/playbook.yml ANSIBLE_HOST_KEY_CHECKING=false
