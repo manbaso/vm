@@ -127,7 +127,7 @@ jobs:
       working-directory: terraform    
     - name: Check the Ansible Hosts File
       run: cat hosts
-      working-directory: terraform
+      working-directory: terraform/ansible
      
             
     - uses: tanmancan/action-setup-ssh-agent-key@1.0.0
