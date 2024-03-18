@@ -48,7 +48,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
   location            = azurerm_resource_group.vm.location
   size                = "Standard_B1s"
   admin_username      = "adminuser"
-
+  
   tags = { "env" : "Dev" }
 
   network_interface_ids = [azurerm_network_interface.vm[count.index].id]
@@ -118,7 +118,7 @@ resource "null_resource" "write_ip_to_file" {
   count = length(azurerm_linux_virtual_machine.vm)
 
   provisioner "local-exec" {
-    command = "echo '${azurerm_linux_virtual_machine.vm[count.index].public_ip_address}' >> hosts"
+    command = "echo ${azurerm_linux_virtual_machine.vm[count.index].public_ip_address} >> hosts"
   }
 
   depends_on = [azurerm_linux_virtual_machine.vm]
