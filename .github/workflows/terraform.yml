@@ -126,12 +126,12 @@ jobs:
       run: terraform output vm_ids | grep ip | awk '{print $3}'  | sed 's/^"//; s/"$//' >> hosts 
       working-directory: terraform 
 
-    - name: Move the hosts file
-      run: cp hosts terraform/ansible  
-         
+    # - name: Move the hosts file
+    #   run: cp hosts terraform/ansible  
+
     - name: Check the Ansible Hosts File
       run: cat hosts
-      working-directory: terraform/ansible
+      working-directory: terraform
      
             
     - uses: tanmancan/action-setup-ssh-agent-key@1.0.0
@@ -140,4 +140,4 @@ jobs:
 
     - name: "Print Ansible version"
       run: ansible-playbook -i hosts playbook.yml 
-      working-directory: terraform/ansible
+      working-directory: terraform
