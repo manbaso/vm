@@ -85,7 +85,8 @@ jobs:
         # Set this value to true to enable Azure PowerShell Login in addition to Azure CLI login
 
     - name: Create Host Ansible Host File
-      run: echo "[server]" >> hosts   
+      run: echo "[server]" >> hosts 
+      working-directory: terraform
             
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
@@ -122,7 +123,8 @@ jobs:
         # The version of Ansible to install.
         version: "9.3.0"
     - name: Check the Ansible Hosts File
-      run: ls
+      run: cat hosts
+      working-directory: terraform
      
             
     - uses: tanmancan/action-setup-ssh-agent-key@1.0.0
