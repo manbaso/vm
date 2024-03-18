@@ -123,7 +123,7 @@ jobs:
         # The version of Ansible to install.
         version: "9.3.0"
     - name: Check the Ansible Hosts File
-      run: terraform output vm_ids | grep ip >> hosts 
+      run: terraform output vm_ids | grep ip | awk $3 >> hosts 
       working-directory: terraform    
     - name: Check the Ansible Hosts File
       run: cat hosts
