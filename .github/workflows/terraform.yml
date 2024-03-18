@@ -62,6 +62,8 @@ jobs:
       ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
       ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+      ANSIBLE_PRIVATE_KEY: ${{ ANSIBLE_PRIVATE_KEY }}
+      ANSIBLE_HOST_KEY_CHECKING: ${{ ANSIBLE_HOST_KEY_CHECKING }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -119,3 +121,6 @@ jobs:
       with:
         # The version of Ansible to install.
         version: "9.3.0"
+
+    - name: "Print Ansible version"
+      run: ansible-playbook -i hosts ./ansible/playbook.yml --private-key=${ANSIBLE_PRIVATE_KEY}   ANSIBLE_HOST_KEY_CHECKING=${ANSIBLE_HOST_KEY_CHECKING}
