@@ -118,7 +118,7 @@ resource "null_resource" "write_ip_to_file" {
   count = length(azurerm_linux_virtual_machine.vm)
 
   provisioner "local-exec" {
-    command = "echo '${azurerm_linux_virtual_machine.vm[count.index].public_ip_address}' >> .ansible/hosts"
+    command = "echo '${azurerm_linux_virtual_machine.vm[count.index].public_ip_address}' >> hosts"
   }
 
   depends_on = [azurerm_linux_virtual_machine.vm]
