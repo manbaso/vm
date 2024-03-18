@@ -1,0 +1,44 @@
+---
+- name: Install Docker dependencies
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg
+      - lsb-release
+    state: present
+
+- name: Add Docker GPG key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+    state: present
+
+- name: Install Docker
+  apt:
+    name: docker-ce
+    state: present
+
+- name: Add user to Docker group
+  user:
+    name: vagrant
+    groups: docker
+    append: yes
+
+- name: Create Jenkins group
+  group:
+    name: jenkins
+    state: present
+
+- name: Create Jenkins user
+  user:
+    name: jenkins
+    group: jenkins
+    shell: /bin/bash
+    home: /home/jenkins
+    createhome: yes
